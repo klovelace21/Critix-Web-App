@@ -73,11 +73,12 @@ const createReview = asyncHandler(async (req, res) => {
 })
 
 // @ desc Update a review
-// @ route PATCH /reviews
+// @ route PATCH /reviews/:id
 // @ access Private(?)
 const editReview = asyncHandler(async (req, res) => {
     // Never changing fields asides from content
-    const { id, content } = req.body
+    const id = req.params.id
+    const { content } = req.body
 
     // Confirm data
     if (!id || !content) {
@@ -98,10 +99,10 @@ const editReview = asyncHandler(async (req, res) => {
 })
 
 // @ desc Delete a review
-// @ route DELETE /reviews
+// @ route DELETE /reviews/:id
 // @ access Private(?)
 const deleteReview = asyncHandler(async (req, res) => {
-    const { id } = req.body
+    const id = req.params.id
 
     // Confirm data
     if (!id) {
