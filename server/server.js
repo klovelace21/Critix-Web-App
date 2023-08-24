@@ -2,13 +2,13 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3500
-const connectDB = require('./config/dbConn')
+const connectDB = require('./utils/config/dbConn')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const userRoute = require('./routes/userRoutes')
 const reviewRoute = require('./routes/reviewRoutes')
-const logger = require('./middleware/logger')
-const errorHandler = require('./middleware/errorHandler')
+const logger = require('./utils/middleware/logger')
+const errorHandler = require('./utils/middleware/errorHandler')
 
 console.log(process.env.NODE_ENV)
 

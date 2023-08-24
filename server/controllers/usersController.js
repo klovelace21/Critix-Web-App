@@ -24,7 +24,12 @@ const getUser = asyncHandler(async (req, res) => {
     const id = req.params.id
     const user = await User.findById(id).select('-password')
 
+    if (!user) {
+        return res.status(400).json({ message: 'User not found'})
+    }
+
     res.json(user)
+  
 })
 
 // @ desc Create a user
@@ -32,18 +37,6 @@ const getUser = asyncHandler(async (req, res) => {
 // @ access Private(?)
 const createUser = asyncHandler(async (req, res) => {
     const { username, password, favoriteGenre } = req.body
-
-    // Confirm data
-    if (!username || !password || !favoriteGenre) {
-        return res.status(400).json({ message: 'All fields are required'})
-    }
-
-    // Check for duplicate user
-    const duplicate = await User.findOne({ username }).lean().exec()
-
-    if (duplicate) {
-        return res.status(409).json({ message: 'Duplicate username' })
-    }
 
     // Hash password
     const hashedPwd = await bcrypt.hash(password, 10)
@@ -68,24 +61,11 @@ const updateUser = asyncHandler(async (req, res) => {
     const id = req.params.id
     const { username, password, favoriteGenre } = req.body
 
-    // Confirm data
-    if (!id || !username || !favoriteGenre) {
-        return res.status(400).json({ message: 'Required fields missing'})
-    }
-
-    // Confirm user exists
     const user = await User.findById(id).exec()
 
+    // Confirm user exists
     if (!user) {
-        return res.status(400).json({ message: 'User not found'})
-    }
-
-     // Checking if duplicate with same username exists and if duplicates id equals what was passed in req
-    const duplicate = await User.findOne({ username }).lean().exec()
-
-   
-    if(duplicate && duplicate._id.toString() !== id) {
-        return res.status(409).json({ message: 'Duplicate username' })
+        return res.status(400).json({ message: 'User not found' })
     }
 
     user.username = username
@@ -107,16 +87,11 @@ const updateUser = asyncHandler(async (req, res) => {
 const deleteUser = asyncHandler(async (req, res) => {
     const  id  = req.params.id
 
-    // Confirm data
-    if (!id) {
-        return res.status(400).json({ message: 'User ID Required'})
-    }
-
     // User exists and can be deleted
     const user = await User.findById(id).exec()
 
     if (!user) {
-        return res.status(400).json({ message: 'User not found' })
+        return res.status(400).json({ message: 'User not found'})
     }
 
     const result = await user.deleteOne()
