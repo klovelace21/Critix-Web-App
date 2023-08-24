@@ -6,6 +6,7 @@ const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const userRoute = require('./routes/userRoutes')
+const reviewRoute = require('./routes/reviewRoutes')
 const logger = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 
@@ -19,7 +20,9 @@ app.use(cors())
 
 app.use(express.json())
 
-app.use('/user', userRoute)
+app.use('/users', userRoute)
+
+app.use('/reviews', reviewRoute)
 
 app.get('*', (req, res) => {
     res.status(404).json({ message: 'Requested page not found'})

@@ -19,7 +19,7 @@ const reviewSchema = new mongoose.Schema({
 
     //ID for API calls to TMDB
     tmdbID: {
-        type: Integer
+        type: Number
     },
 
     content: {
