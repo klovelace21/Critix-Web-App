@@ -2,9 +2,9 @@ const User = require('../models/User')
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 
-// @desc Get all users
-// @route GET /users
-// @access Private
+// @ desc Get all users
+// @ route GET /users
+// @ access Private
 const getAllUsers = asyncHandler(async (req, res) => {
 
     // obtaining users not including password
@@ -61,9 +61,9 @@ const createUser = asyncHandler(async (req, res) => {
     }
 })
 
-// @desc Update a user
-// @route PATCH /users/:id
-// @access Private(?)
+// @ desc Update a user
+// @ route PATCH /users/:id
+// @ access Private(?)
 const updateUser = asyncHandler(async (req, res) => {
     const id = req.params.id
     const { username, password, favoriteGenre } = req.body

@@ -19,6 +19,21 @@ const getAllReviews = asyncHandler(async (req, res) => {
     res.json(reviews)
 })
 
+// @ desc Get a review
+// @ route GET /reviews/:id
+//@ access Private(?)
+const getReview = asyncHandler(async (req, res) => {
+    const id = req.params.id
+    const review = await Review.findById(id).lean()
+
+    // if review does not exist
+    if (!review) {
+        return res.status(400).json({ message: 'Review not found'})
+    }
+
+    res.json(review)
+})
+
 // @ desc Create a review
 // @ route POST /reviews
 // @ access Private(?)
@@ -108,6 +123,7 @@ const deleteReview = asyncHandler(async (req, res) => {
 
 module.exports = {
     getAllReviews,
+    getReview,
     createReview,
     editReview,
     deleteReview
