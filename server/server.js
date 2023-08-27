@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const userRoute = require('./routes/userRoutes')
 const reviewRoute = require('./routes/reviewRoutes')
+const apiRoute = require('./routes/apiRoutes')
 const logger = require('./utils/middleware/logger')
 const errorHandler = require('./utils/middleware/errorHandler')
 
@@ -23,6 +24,8 @@ app.use(express.json())
 app.use('/users', userRoute)
 
 app.use('/reviews', reviewRoute)
+
+app.use('/api', apiRoute)
 
 app.get('*', (req, res) => {
     res.status(404).json({ message: 'Requested page not found'})

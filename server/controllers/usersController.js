@@ -38,6 +38,18 @@ const getUser = asyncHandler(async (req, res) => {
 const createUser = asyncHandler(async (req, res) => {
     const { username, password, favoriteGenre } = req.body
 
+    // Confirm data
+    if (!username || !password || !favoriteGenre) {
+        return res.status(400).json({ message: 'All fields are required'})
+    }
+    
+    // Check for duplicate user
+    const duplicate = await User.findOne({ username }).lean().exec()
+
+    if(duplicate) {
+        return res.status(409).json({ message: 'Duplicate username'})
+    }
+
     // Hash password
     const hashedPwd = await bcrypt.hash(password, 10)
     
@@ -61,7 +73,20 @@ const updateUser = asyncHandler(async (req, res) => {
     const id = req.params.id
     const { username, password, favoriteGenre } = req.body
 
+    // Confirm data
+    if (!username || !favoriteGenre) {
+    return res.status(400).json({ message: 'Required fields missing' })
+    }
+
+
     const user = await User.findById(id).exec()
+
+    //Checking if duplicate with same username exists and if duplicates id == what was passed in req
+    const duplicate = await User.findOne({ username }).lean().exec()
+
+    if (duplicate && duplicate._id.toString() !== id) {
+        return res.status(409).json({ message: 'Duplicate username'})
+    }
 
     // Confirm user exists
     if (!user) {
@@ -85,7 +110,7 @@ const updateUser = asyncHandler(async (req, res) => {
 // @ route DELETE /users/:id
 // @ access Private
 const deleteUser = asyncHandler(async (req, res) => {
-    const  id  = req.params.id
+    const id = req.params.id
 
     // User exists and can be deleted
     const user = await User.findById(id).exec()
