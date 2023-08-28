@@ -7,6 +7,9 @@ const trendingCaller = require('../api/calls/trendingCalls')
 router.route('/trending/movies')
     .get(trendingCaller.getTrendingMovies)
 
+router.route('/trending/shows')
+    .get(trendingCaller.getTrendingShows)
+
 // movie calls 
 router.route('/movies/:movId')
     .get(movieCaller.getMovie)
