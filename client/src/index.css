@@ -19,6 +19,49 @@ body {
   background-color: var(--primary);
 }
 
+/* Landing */
+.landing {
+  display: flex;
+  
+}
+.signUp {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: left;
+  background-color: white;
+  width: 50%;
+}
+
+
+.signUp input, label, button {
+  width: 50%;
+  margin-left: 100px;
+}
+
+.signUp label {
+  margin-bottom: 15px;
+}
+
+.signUp input {
+  margin-bottom: 10px;
+  height: 30px;
+}
+
+.signUp button {
+  width: 50%;
+  height: 30px
+}
+
+.split-right {
+  background-color: red;
+  width: 50%;
+  height: 100vh;
+  float: right;
+}
+
+
+
 
 /* Navbar component */
 

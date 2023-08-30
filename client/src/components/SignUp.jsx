@@ -17,16 +17,19 @@ const SignUp = () => {
     setFavoriteGenre('')
   }
   return (
-    <form onSubmit={addUser}>
+    <form onSubmit={addUser} className='signUp'>
+      <label>Username</label>
       <input value={newUsername} 
       type='text' 
       name='Username'
       onChange={event => setUsername(event.target.value)}
       />
+      <label>Password</label>
       <input value={newPassword}
       type='text'
       name='Password'
       onChange={event => setPassword(event.target.value)}/>
+      <label>Favorite Genre</label>
       <input value={newFavoriteGenre}
       type='text'
       name='Favorite Genre'
