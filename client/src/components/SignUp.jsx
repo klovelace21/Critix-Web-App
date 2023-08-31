@@ -62,12 +62,14 @@ const SignUp = () => {
       <input value={newUsername} 
       type='text' 
       name='Username'
+      placeholder='Username'
       onChange={event => setUsername(event.target.value)}
       />
       <label>Password</label>
       <input value={newPassword}
-      type='text'
+      type='password'
       name='Password'
+      placeholder='Password'
       onChange={event => setPassword(event.target.value)}/>
       <label>Select your favorite genre</label>
       <Select className="genres" options={genres} onChange={(choice) => selectSelectedOption(choice)}/>
