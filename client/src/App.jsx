@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes,  } from 'react-router-dom'
 
 import Landing from './components/Landing'
 

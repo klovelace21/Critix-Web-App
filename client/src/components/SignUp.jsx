@@ -1,6 +1,7 @@
 import createUser from '../services/users'
 import { useState } from 'react'
 import Select from 'react-select'
+import PropTypes from 'prop-types'
 import explosion from '../assets/icons/explosion.png'
 import hat from '../assets/icons/hat.png'
 import magicWand from '../assets/icons/magic_wand.png'
@@ -17,7 +18,9 @@ import alien from '../assets/icons/alien.png'
 import knife from '../assets/icons/knife.png'
 import tank from '../assets/icons/tank.png'
 import cactus from '../assets/icons/cactus.png'
-const SignUp = () => {
+
+
+const SignUp = ({ toggleAccount }) => {
   const genres = [
     { value: "action", label: <div><img src={explosion} height="15px" width="15px"/>Action</div> },
     { value: 'adventure', label: <div><img src={hat} height="15px" width="15px"/>Adventure</div> },
@@ -74,8 +77,13 @@ const SignUp = () => {
       <label>Select your favorite genre</label>
       <Select className="genres" options={genres} onChange={(choice) => selectSelectedOption(choice)}/>
       <button type='submit'>create</button>
+      <a href='#' onClick={toggleAccount}>Already have an account?</a>
     </form>
   )
+}
+
+SignUp.propTypes = {
+  toggleAccount: PropTypes.func
 }
 
 export default SignUp
