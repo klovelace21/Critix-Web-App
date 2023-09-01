@@ -51,43 +51,76 @@ body {
 
 }
 
-.split-left label {
-  margin-top: 50px;
-}
-.split-left .signUp, .login {
-  margin: 0px 50px;
-  padding: 10px 20px;
-  border-style: solid;
-  border-radius: 10px;
-  width: 600px
+.split-left a {
+  align-self: left;
+  margin: 20px 15px;
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
 }
 
+.split-left a:hover {
+  color: white;
+}
+
+.split-left label {
+  margin-top: 20px;
+}
+
+.split-left .signUp, .login {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  margin: 85px auto;
+  border-style: solid;
+  border-radius: 10px;
+  width: 400px;
+  height: auto;
+
+}
+
+.split-left input:hover {
+  background-color: lightgray;
+}
+
+.split-left input:focus {
+  background-color: lightgray;
+}
+
+.split-left input:focus::placeholder {
+  color: transparent;
+}
+
+.signUp {
+  background-color: rgba(60, 60, 60, 0.6);
+}
+
+.signUp h1 {
+  font-size: 25px;
+  letter-spacing: 0px;
+  align-self: left;
+}
 .signUp input, label, button {
-  margin-left: 75px;
   width: 50%;
   display: block;
+  align-self: center;
+  
 }
 
 .signUp label {
   margin-bottom: 10px;
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 18px;
+  color: black;
 }
 
 .signUp input {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   height: 25px;
   background-color: white;
   border-radius: 8px;
   padding: 15px 12px;
-}
-
-.signUp input:hover {
-  background-color: lightgray;
-}
-
-.signUp input:focus {
-  background-color: lightgray;
 }
 
 .signUp input:focus::placeholder{
@@ -95,9 +128,9 @@ body {
 }
 
 .signUp .genres {
-  width: 35%;
+  width: 50%;
   border-radius: 8px;
-  margin-left: 75px;
+  align-self: center;
   height: 25px;
 }
 
@@ -106,26 +139,36 @@ body {
 }
 
 .signUp button {
-  margin-top: 25px;
-  width: 25%;
-  height: 30px
+  margin-top: 50px;
+  width: 40%;
+  height: 30px;
+  border-radius: 4px;
 }
 
 .signUp button:hover {
+  
   transform: scale(1.1);
-  margin-left: 82px;
+}
+
+.login {
+  background-color: rgba(60, 60, 60, 0.6);
+}
+.login h1 {
+  font-size: 25px;
+  letter-spacing: 0px;
+  align-self: left;
 }
 
 .login input, label, button {
-  margin-left: 75px;
   width: 50%;
   display: block;
+  align-self: center;
 }
 
 .login label {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .login input {
@@ -139,16 +182,17 @@ body {
 .login button {
   margin-top: 25px;
   width: 25%;
-  height: 30px
+  height: 30px;
+  border-radius: 4px;
 }
 
 .login button:hover {
   transform: scale(1.1);
-  margin-left: 82px;
 }
 
 
 .split-right {
+
   width: 40%;
   height: 100vh;
   float: right;
@@ -200,33 +244,23 @@ body {
     width: 100%;
   }
 
-
-.split-left .signUp {
-  width: 300px;
-  margin-top: 75px;
-  padding: 10px;
-  margin: 40px;
-  
+  .split-left h1 {
+    align-self: left;
   }
-
-  .signUp label, input, button {
-    margin-left: 10px;
+  .split-left .signUp {
+    width: 300px;
+    margin-top: 75px;
   }
-
-  .signUp input {
-    margin-left: 10px;
-  }
-  
   .signUp label {
     font-size: 15px;
   }
   .signUp input {
-    width: 60%;
+    width: 50%;
     padding: 0px 8px;
   }
 
   .signUp .genres {
-    width: 70%;
+    width: 50%;
     margin-left: 10px;
   }
 
@@ -235,9 +269,14 @@ body {
     margin-left: 10px;
   }
 
+  .login {
+    width: 300px;
+  }
   .split-right {
     height: 100vh;
     width: 100%;
   }
+
+
   
 }

@@ -61,6 +61,7 @@ const SignUp = ({ toggleAccount }) => {
   
   return (
     <form onSubmit={addUser} className='signUp'>
+      <h1>Sign Up</h1>
       <label>Username</label>
       <input value={newUsername} 
       type='text' 
@@ -76,7 +77,7 @@ const SignUp = ({ toggleAccount }) => {
       onChange={event => setPassword(event.target.value)}/>
       <label>Select your favorite genre</label>
       <Select className="genres" options={genres} onChange={(choice) => selectSelectedOption(choice)}/>
-      <button type='submit'>create</button>
+      <button type='submit'>Create Account</button>
       <a href='#' onClick={toggleAccount}>Already have an account?</a>
     </form>
   )

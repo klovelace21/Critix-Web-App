@@ -10,6 +10,7 @@ const Login = ({ toggleAccount }) => {
 
   return (
     <form className="login">
+      <h1>Login</h1>
       <label>Username</label>
       <input value={username}
         onChange={event => setUsername(event.target.value)}
