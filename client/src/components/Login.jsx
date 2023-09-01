@@ -13,11 +13,11 @@ const Login = ({ toggleAccount }) => {
       <h1>Login</h1>
       <label>Username</label>
       <input value={username}
-        onChange={event => setUsername(event.target.value)}
+        onChange={e => setUsername(e.target.value)}
         placeholder="Enter Username"/>
       <label>Password</label>
       <input value={password}
-        onChange={event => setPassword(event.target.value)}
+        onChange={e => setPassword(e.target.value)}
         placeholder="Enter Password"/>
       <button type="submit">Sign In</button>
       <a href='#' onClick={toggleAccount}>Dont have an account?</a>

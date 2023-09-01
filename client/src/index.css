@@ -19,14 +19,14 @@
 }
 
 body {
-  background-image: url('assets/landing_background.jpg');
+  background-image: linear-gradient(#BFDBF7, #0D253F);
   object-fit: cover;
 }
 
 /* Landing */
 .landing {
   display: flex;
-  background-image: url('assets/landing_background.jpg');
+  background-image: linear-gradient(#BFDBF7, #0D253F);
   object-fit: cover;
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 .signUp {
-  background-color: rgba(60, 60, 60, 0.6);
+  background-color: rgba(2, 1, 1, 0.2);
 }
 
 .signUp .icon {
@@ -193,6 +193,7 @@ body {
   width: 40%;
   height: 30px;
   border-radius: 4px;
+  font-weight: bold;
 }
 
 .signUp button:hover {
@@ -202,7 +203,7 @@ body {
 
 .login {
   margin-top: 100px;
-  background-color: rgba(60, 60, 60, 0.6);
+  background-color: rgba(60, 60, 60, 0.2);
 }
 .login h1 {
   font-size: 25px;
@@ -271,15 +272,19 @@ body {
 
 .split-right span {
   font-size: 50px;
-  margin-top: 175px;
+  margin-top: 165px;
   margin-left: 11px;
   font-weight: bolder;
   font-style: italic;
   background-image: linear-gradient(#3A3786, #787ABD);
   background-clip: text;
-  color:transparent
+  color:transparent;
+  
 }
 
+.split-right span:hover {
+  transform: scale(1.05)
+}
 
 
 
@@ -321,8 +326,9 @@ body {
 
   .split-left h1 {
     align-self: left;
-    font-size: 22px;
+    font-size: 28px;
     margin-left: 6px;
+    margin-bottom: 20px;
   }
   .split-left .signUp {
     width: 300px;
@@ -347,6 +353,7 @@ body {
   }
 
   .login {
+    margin-top: 40px;
     width: 300px;
   }
 
