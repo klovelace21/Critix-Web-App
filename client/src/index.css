@@ -37,14 +37,13 @@ body {
   width: 60%;
   float: left;
   height: 100vh;
-  border-right-style: solid;
-  border-width: 5px;
 }
 
 .split-left h1{
   width: 25%;
   margin-left: 20px;
   margin-top: 10px;
+  padding-bottom: 20px;
   font-size: 50px;
   font-family: 'Phudu';
   font-weight: bolder;
@@ -66,7 +65,7 @@ body {
 }
 
 .split-left label {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .split-left .signUp, .login {
@@ -74,7 +73,7 @@ body {
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  margin: 54px auto;
+  margin: 0px auto;
   border-style: solid;
   border-radius: 10px;
   width: 400px;
@@ -98,27 +97,68 @@ body {
   background-color: rgba(60, 60, 60, 0.6);
 }
 
+.signUp .icon {
+  
+  padding-right: 4px;
+  
+}
+.signUp .instructions {
+  width: 80%;
+  display: flex;
+  align-self: center;
+  font-size: 14px;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 5px;
+  
+}
+
+
+.signUp .hide, .offscreen {
+  position: absolute;
+  overflow: hidden;
+  width: 1%;
+  right: -350px;
+}
+
+.signUp .valid, .invalid {
+  margin-left: 5px;
+}
+
+.signUp .valid {
+  color: rgb(117, 255, 117);
+}
+
+.signUp .invalid {
+  color: red;
+}
+
 .signUp h1 {
   font-size: 25px;
   letter-spacing: 0px;
   align-self: left;
+  margin-left: 5px;
+  margin-top: 3px;
 }
 .signUp input, label, button {
-  width: 50%;
+  width: 80%;
   display: block;
   align-self: center;
   
 }
 
 .signUp label {
-  margin-bottom: 10px;
+  margin-left: 80px;
+  width: 100%;
+  margin-bottom: 1px;
   font-weight: bolder;
-  font-size: 18px;
+  font-size: 17px;
   color: black;
 }
 
 .signUp input {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   height: 25px;
   background-color: white;
   border-radius: 8px;
@@ -130,10 +170,18 @@ body {
 }
 
 .signUp .genres {
-  width: 50%;
+  margin-top: 4px;
+  width: 80%;
   border-radius: 8px;
   align-self: center;
   height: 25px;
+}
+
+.signUp .error {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  color: red;
 }
 
 .signUp .genres img {
@@ -141,7 +189,7 @@ body {
 }
 
 .signUp button {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 40%;
   height: 30px;
   border-radius: 4px;
@@ -153,6 +201,7 @@ body {
 }
 
 .login {
+  margin-top: 100px;
   background-color: rgba(60, 60, 60, 0.6);
 }
 .login h1 {
@@ -162,13 +211,13 @@ body {
 }
 
 .login input, label, button {
-  width: 50%;
+  width: 80%;
   display: block;
   align-self: center;
 }
 
 .login label {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   font-weight: bolder;
   font-size: 18px;
 }
@@ -207,10 +256,11 @@ body {
 .split-right img {
   display: block;
   width: 100%;
-  height: 33.4%;
+  height: 34%;
   object-fit: cover;
   border-top-style: solid;
-  
+  border-left-style: solid;
+  border-left-width: 5px;
 }
 
 .split-right .text {
@@ -266,7 +316,7 @@ body {
 
   .split-left {
     width: 100%;
-    height: 80vh;
+    height: 90vh;
   }
 
   .split-left h1 {
@@ -279,16 +329,16 @@ body {
   
   }
   .signUp label {
+    margin-right: 21px;
     font-size: 15px;
   }
   .signUp input {
-    width: 50%;
+    width: 80%;
     padding: 0px 8px;
   }
 
   .signUp .genres {
-    width: 50%;
-    margin-left: 10px;
+    width: 80%;
   }
 
   .signUp button:focus {

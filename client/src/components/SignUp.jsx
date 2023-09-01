@@ -1,5 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import createUser from '../services/users'
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import { faCheck, faTimes, faInfoCircle} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Select from 'react-select'
 import PropTypes from 'prop-types'
 import explosion from '../assets/icons/explosion.png'
@@ -21,6 +24,9 @@ import cactus from '../assets/icons/cactus.png'
 
 
 const SignUp = ({ toggleAccount }) => {
+  const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/
+  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
   const genres = [
     { value: "action", label: <div><img src={explosion} height="15px" width="15px"/>Action</div> },
     { value: 'adventure', label: <div><img src={hat} height="15px" width="15px"/>Adventure</div> },
@@ -39,45 +45,163 @@ const SignUp = ({ toggleAccount }) => {
     { value: 'war', label: <div><img src={tank} height="15px" width="15px"/>War</div> },
     { value: 'western', label: <div><img src={cactus} height="15px" width="15px"/>Western</div> }
   ]
+
+  const userRef = useRef()
+  const errRef = useRef()
+
   const [newUsername, setUsername] = useState('')
+  const [validName, setValidName] = useState(false) 
+  const [userFocus, setUserFocus] = useState(false)
+
   const [newPassword, setPassword] = useState('')
+  const [validPassword, setValidPassword] = useState(false)
+  const [passwordFocus, setPasswordFocus] = useState(false)
+
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [confirmMatch, setConfirmMatch] = useState(false)
+  const [confirmFocus, setConfirmFocus] = useState(false)
+
+  const [errorMsg, setErrMsg] = useState('')
+
+  useEffect(() => {
+    userRef.current.focus()
+  }, [])
+
+  // Confirm valid username
+  useEffect(() => {
+
+    setValidName(USER_REGEX.test(newUsername))
+  }, [newUsername])
+
+  // Verify password is valid and that confirmPassword matches
+  useEffect(() => {
+    setValidPassword(PWD_REGEX.test(newPassword))
+
+    const matches = newPassword == confirmPassword
+    
+    setConfirmMatch(matches)
+
+  }, [newPassword, confirmPassword])
+
+  useEffect(() => {
+    setErrMsg('')
+  }, [newUsername, newPassword, confirmPassword])
+
   const [selectedOption, selectSelectedOption] = useState('')
 
-  const addUser = (event) => {
+  const addUser = async (event) => {
     event.preventDefault()
-    
-    createUser({ 
+    try{
+    await createUser({ 
       username: newUsername, 
       password: newPassword, 
       favoriteGenre: selectedOption.value
     })
+    } catch (err) {
+      if(!err.response) {
+        setErrMsg('No response from server')
+      } else if (err.response?.status === 409) {
+        setErrMsg('Username Taken')
+      } else {
+        setErrMsg('Registration Failed')
+      }
+      errRef.current.focus()
+    }
       
      
 
     setUsername('')
     setPassword('')
+    setConfirmPassword('')
     selectSelectedOption('')
   }
   
   return (
     <form onSubmit={addUser} className='signUp'>
       <h1>Sign Up</h1>
-      <label>Username</label>
+      <label htmlFor='username'>
+        Username:
+        <span className={validName ? 'valid' : 'hide'}
+        ><FontAwesomeIcon icon={faCheck}/>
+        </span>
+        <span className={validName || !newUsername ? 'hide' : 'invalid'}>
+          <FontAwesomeIcon icon={faTimes} />
+        </span>
+        </label>
       <input value={newUsername} 
       type='text' 
-      name='Username'
+      id='username'
+      ref={userRef}
+      autoComplete='off'
       placeholder='Username'
-      onChange={event => setUsername(event.target.value)}
+      onChange={e => setUsername(e.target.value)}
+      required
+      aria-invalid={validName ? 'false' : 'true'}
+      aria-describedby='uidnote'
+      onFocus={() => setUserFocus(true)}
+      onBlur={() => setUserFocus(false)}
       />
-      <label>Password</label>
+      <p className={userFocus && newUsername && !validName ? 'instructions' : 'offscreen'}>
+        <FontAwesomeIcon icon={faInfoCircle} className='icon'/>
+        4 to 24 characters. <br />
+        Must begin with a letter. <br />
+        Letters, numbers, underscores, hyphens allowed.
+      </p>
+      <label htmlFor='password'>
+        Password:
+        <span className={validPassword ? 'valid' : 'hide'}>
+          <FontAwesomeIcon icon={faCheck}/>
+        </span>
+        <span className={validPassword || !newPassword ? 'hide' : 'invalid'}>
+          <FontAwesomeIcon icon={faTimes}/>
+        </span>
+        </label>
       <input value={newPassword}
       type='password'
+      id='pasword'
       name='Password'
       placeholder='Password'
-      onChange={event => setPassword(event.target.value)}/>
+      onChange={e => setPassword(e.target.value)}
+      required
+      aria-invalid={validPassword ? 'false' : 'true'}
+      aria-describedby='pwdnote'
+      onFocus={() => setPasswordFocus(true)}
+      onBlur={() => setPasswordFocus(false)}
+      />
+      <p id='pwdnote' className={passwordFocus && !validPassword && newPassword ? 'instructions' : 'offscreen'}>
+        <FontAwesomeIcon icon={faInfoCircle}  className='icon'/>
+        8 to 24 character. <br/>
+        Must include uppercase and lowercase letters, a number and a special character.<br />
+        Allowed special characters: ! @ # $ %
+      </p>
+      
+      <label htmlFor='confirm_pwd'>Confirm Password:
+        <span className={confirmMatch && confirmPassword ? 'valid' : 'hide'}>
+          <FontAwesomeIcon icon={faCheck}/>
+        </span>
+        <span className={confirmMatch  || !confirmPassword ? 'hide' : 'invalid'}>
+          <FontAwesomeIcon icon={faTimes} />
+        </span>
+        </label>
+      <input value={confirmPassword}
+        type='password'
+        id='confirm_pwd'
+        placeholder='Confirm Password'
+        onChange={e => setConfirmPassword(e.target.value)}
+        aria-invalid={confirmMatch ? 'false' : 'true'}
+        aria-describedby='confirmnote'
+        onFocus={() => setConfirmFocus(true)}
+        onBlur={() => setConfirmFocus(false)}
+        />
+      <p id='confirmnote' className={confirmFocus && !confirmMatch ? 'instructions' : 'offscreen'}>
+        <FontAwesomeIcon icon={faInfoCircle} className='icon' />
+        Must match the first password input field.
+      </p>
       <label>Select your favorite genre</label>
       <Select className="genres" options={genres} onChange={(choice) => selectSelectedOption(choice)}/>
-      <button type='submit'>Create Account</button>
+      <span className='error' ref={errRef}>{errorMsg}</span>
+      <button disabled={!validName || !validPassword || !confirmMatch ? true : false}>Create Account</button>
+     
       <a href='#' onClick={toggleAccount}>Already have an account?</a>
     </form>
   )
