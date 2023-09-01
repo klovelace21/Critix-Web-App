@@ -51,8 +51,11 @@ body {
 
 }
 
+.split-left label {
+  margin-top: 50px;
+}
 .split-left .signUp, .login {
-  margin: 50px;
+  margin: 0px 50px;
   padding: 10px 20px;
   border-style: solid;
   border-radius: 10px;
