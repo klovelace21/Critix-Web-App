@@ -21,8 +21,15 @@ const Landing = () => {
       
        </div>
       <div className="split-right">
+        <div className="text">
+        <span>DISCOVER</span>
+        <span>WATCH</span>
+        <span>REVIEW</span>
+        </div>
         <img src={discover}/>
+        
         <img src={theatre}/>
+        
         <img src={keyboard}/>
       </div>
     </div> 
