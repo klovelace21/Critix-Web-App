@@ -115,7 +115,7 @@ body {
 }
 
 
-.signUp .hide, .offscreen {
+.landing .hide, .offscreen {
   position: absolute;
   overflow: hidden;
   width: 1%;

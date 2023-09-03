@@ -61,6 +61,7 @@ const SignUp = ({ toggleAccount }) => {
   const [confirmMatch, setConfirmMatch] = useState(false)
   const [confirmFocus, setConfirmFocus] = useState(false)
 
+
   const [errorMsg, setErrMsg] = useState('')
 
   useEffect(() => {
@@ -117,6 +118,7 @@ const SignUp = ({ toggleAccount }) => {
   }
   
   return (
+    
     <form onSubmit={addUser} className='signUp'>
       <h1>Sign Up</h1>
       <label htmlFor='username'>
@@ -129,17 +131,17 @@ const SignUp = ({ toggleAccount }) => {
         </span>
         </label>
       <input value={newUsername} 
-      type='text' 
-      id='username'
-      ref={userRef}
-      autoComplete='off'
-      placeholder='Username'
-      onChange={e => setUsername(e.target.value)}
-      required
-      aria-invalid={validName ? 'false' : 'true'}
-      aria-describedby='uidnote'
-      onFocus={() => setUserFocus(true)}
-      onBlur={() => setUserFocus(false)}
+        type='text' 
+        id='username'
+        ref={userRef}
+        autoComplete='off'
+        placeholder='Username'
+        onChange={e => setUsername(e.target.value)}
+        required
+        aria-invalid={validName ? 'false' : 'true'}
+        aria-describedby='uidnote'
+        onFocus={() => setUserFocus(true)}
+        onBlur={() => setUserFocus(false)}
       />
       <p className={userFocus && newUsername && !validName ? 'instructions' : 'offscreen'}>
         <FontAwesomeIcon icon={faInfoCircle} className='icon'/>
