@@ -201,6 +201,25 @@ body {
   transform: scale(1.1);
 }
 
+ .success {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 325px;
+  height: 25%;
+  background-color: rgba(60, 60, 60, 0.2);
+  margin: 120px auto;
+  padding: 40px 50px;
+  border-style: solid;
+  border-radius: 8px;
+
+}
+
+.success a {
+  text-decoration: underline;
+  margin-left: 65px;
+}
+
 .login {
   margin-top: 100px;
   background-color: rgba(60, 60, 60, 0.2);
@@ -268,11 +287,12 @@ body {
   position: absolute;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 .split-right span {
   font-size: 50px;
-  margin-top: 165px;
+  margin-top: 140px;
   margin-left: 11px;
   font-weight: bolder;
   font-style: italic;
@@ -352,6 +372,9 @@ body {
     margin-left: 10px;
   }
 
+ .success a {
+    margin-left: 70px;
+  }
   .login {
     margin-top: 40px;
     width: 300px;
@@ -360,6 +383,10 @@ body {
   .split-right {
     height: 101vh;
     width: 100%;
+  }
+
+  .split-right span {
+    margin-top: 170px;
   }
   
 

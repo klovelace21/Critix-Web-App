@@ -60,7 +60,8 @@ const SignUp = ({ toggleAccount }) => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [confirmMatch, setConfirmMatch] = useState(false)
   const [confirmFocus, setConfirmFocus] = useState(false)
-
+  
+  const [success, setSuccess] = useState(false)
 
   const [errorMsg, setErrMsg] = useState('')
 
@@ -98,6 +99,7 @@ const SignUp = ({ toggleAccount }) => {
       password: newPassword, 
       favoriteGenre: selectedOption.value
     })
+    setSuccess(true)
     } catch (err) {
       if(!err.response) {
         setErrMsg('No response from server')
@@ -118,7 +120,12 @@ const SignUp = ({ toggleAccount }) => {
   }
   
   return (
-    
+    <>
+    {success ? 
+    <div className='success'>
+    Account successfully created <a href="#" onClick={toggleAccount}>Login now</a>
+    </div>
+    :
     <form onSubmit={addUser} className='signUp'>
       <h1>Sign Up</h1>
       <label htmlFor='username'>
@@ -176,7 +183,6 @@ const SignUp = ({ toggleAccount }) => {
         Must include uppercase and lowercase letters, a number and a special character.<br />
         Allowed special characters: ! @ # $ %
       </p>
-      
       <label htmlFor='confirm_pwd'>Confirm Password:
         <span className={confirmMatch && confirmPassword ? 'valid' : 'hide'}>
           <FontAwesomeIcon icon={faCheck}/>
@@ -206,6 +212,8 @@ const SignUp = ({ toggleAccount }) => {
      
       <a href='#' onClick={toggleAccount}>Already have an account?</a>
     </form>
+    }
+  </>
   )
 }
 
