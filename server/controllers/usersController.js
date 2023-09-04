@@ -149,12 +149,9 @@ const loginUser = asyncHandler (async (req, res) => {
         id: user._id
     }
 
-    const token = jwt.sign(userForToken, process.env.SECRET)
-    res.cookie('jwt', token, { httpOnly: true })
+    const accessToken = jwt.sign(userForToken, process.env.SECRET)
 
-    const { favoriteGenre, reviews } = user
-
-    res.status(200).send({ username, favoriteGenre, reviews })
+    res.status(201).send({ username, accessToken })
 })
 
 
