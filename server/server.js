@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3500
 const connectDB = require('./utils/config/dbConn')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 const userRoute = require('./routes/userRoutes')
 const reviewRoute = require('./routes/reviewRoutes')
 const apiRoute = require('./routes/apiRoutes')
@@ -20,6 +21,8 @@ app.use(logger)
 app.use(cors())
 
 app.use(express.json())
+
+app.use(cookieParser())
 
 app.use('/users', userRoute)
 

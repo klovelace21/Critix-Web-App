@@ -12,4 +12,8 @@ router.route('/:id')
     .patch(usersController.updateUser)
     .delete(usersController.deleteUser)
 
+router.route('/login')
+    .post(usersController.loginUser)
+
+
 module.exports = router

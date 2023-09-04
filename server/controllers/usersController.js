@@ -1,6 +1,8 @@
 const User = require('../models/User')
 const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+
 
 // @ desc Get all users
 // @ route GET /users
@@ -124,6 +126,38 @@ const deleteUser = asyncHandler(async (req, res) => {
     res.json({ message: `Username ${result.username} with ID ${result._id} deleted`})
 })
 
+// @ desc Login a user
+// @ route POST /users/login
+// @ access Private
+const loginUser = asyncHandler (async (req, res) => {
+    const { username, password } = req.body
+
+    const user = await User.findOne({ username })
+
+    const passwordCorrect = user === null
+    ? false
+    : await bcrypt.compare(password, user.password)
+
+    if(!(user && passwordCorrect)) {
+        return res.status(401).json({
+            error: 'invalid username or password'
+        })
+    }
+
+    const userForToken = {
+        username: user.username,
+        id: user._id
+    }
+
+    const token = jwt.sign(userForToken, process.env.SECRET)
+    res.cookie('jwt', token, { httpOnly: true })
+
+    const { favoriteGenre, reviews } = user
+
+    res.status(200).send({ username, favoriteGenre, reviews })
+})
+
+
 
 
 module.exports = {
@@ -131,5 +165,6 @@ module.exports = {
     getUser,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser
 }
