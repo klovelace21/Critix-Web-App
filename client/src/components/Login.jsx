@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import PropTypes from 'prop-types'
-import { useRef } from "react"
-import AuthContext from "../context/AuthProvider"
+import useAuth from "../hooks/useAuth"
 import { loginUser } from '../services/users'
+import { useNavigate } from "react-router-dom"
 
 const Login = ({ toggleAccount }) => {
-  const { setAuth } = useContext(AuthContext)
+  const { setAuth } = useAuth()
   const usernameRef = useRef()
   const errRef = useRef()
-
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errMsg, setErrMsg] = useState('')
@@ -25,17 +25,29 @@ const Login = ({ toggleAccount }) => {
     e.preventDefault()
 
     try {
-       await loginUser({
+
+      const response = await loginUser({
         username: username,
         password: password,
-      })
-    } catch (err) {
+        })
+      
+      const { accessToken } = response
+
+      setAuth({ username, accessToken })
+
+      setUsername('')
+      setPassword('')
+
+      navigate('/home')
+
+      } catch (err) {
       
       if (!err.response) {
         console.log('No response') 
       } else if (err.response?.status === 401) {
-        console.log('invalid username or password')
+        setErrMsg('Invalid username or password')
       }
+      errRef.current.focus()
     }
 
     
@@ -43,9 +55,11 @@ const Login = ({ toggleAccount }) => {
 
   return (
     <form className="login" onSubmit={handleSubmit}>
-      <p ref={errRef} className={errMsg ? "errMsg" :
-        "offscreen"} aria-live="assertive"></p>
       <h1>Login</h1>
+        <p ref={errRef} className={errMsg ? "errMsg" :
+        "offscreen"} aria-live="assertive">
+          {errMsg}
+        </p>
       <label htmlFor="username">Username</label>
       <input value={username}
         onChange={e => setUsername(e.target.value)}

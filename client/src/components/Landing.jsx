@@ -4,6 +4,7 @@ import discover from '../assets/discover.jpg'
 import theatre from '../assets/movie_theatre.jpg'
 import keyboard from '../assets/keyboard.jpg'
 import { useState } from "react"
+import '../styles/landing.css'
 const Landing = () => {
   const [hasAccount, setHasAccount] = useState(true)
 

@@ -4,13 +4,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Phudu:wght@900&display=swap');
 
-
-:root {
-  --primary: #FFE66D;
-  --secondary: #DAFFED;
-  --tertiary: #DE3C4B;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,10 +11,6 @@
   font-family: "Lato";
 }
 
-body {
-  background-image: linear-gradient(#BFDBF7, #0D253F);
-  object-fit: cover;
-}
 
 /* Landing */
 .landing {
@@ -32,14 +21,14 @@ body {
 
 
 
-.split-left {
+.landing .split-left {
   flex-direction: column;
   width: 60%;
   float: left;
   height: 100vh;
 }
 
-.split-left h1{
+.landing .split-left h1{
   width: 25%;
   margin-left: 20px;
   margin-top: 10px;
@@ -52,7 +41,7 @@ body {
 
 }
 
-.split-left a {
+.landing .split-left a {
   align-self: left;
   margin: 20px 15px;
   text-decoration: none;
@@ -60,15 +49,15 @@ body {
   color: black;
 }
 
-.split-left a:hover {
+.landing .split-left a:hover {
   color: white;
 }
 
-.split-left label {
+.landing .split-left label {
   margin-top: 10px;
 }
 
-.split-left .signUp, .login {
+.landing .split-left .signUp, .login {
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -81,28 +70,29 @@ body {
 
 }
 
-.split-left input:hover {
+.landing .split-left input:hover {
   background-color: lightgray;
 }
 
-.split-left input:focus {
+.landing .split-left input:focus {
   background-color: lightgray;
 }
 
-.split-left input:focus::placeholder {
+.landing .split-left input:focus::placeholder {
   color: transparent;
 }
 
-.signUp {
+.landing .signUp {
   background-color: rgba(2, 1, 1, 0.2);
 }
 
-.signUp .icon {
+.landing .signUp .icon {
   
   padding-right: 4px;
   
 }
-.signUp .instructions {
+
+.landing .signUp .instructions {
   width: 80%;
   display: flex;
   align-self: center;
@@ -122,33 +112,33 @@ body {
   right: -350px;
 }
 
-.signUp .valid, .invalid {
+.landing .signUp .valid, .invalid {
   margin-left: 5px;
 }
 
-.signUp .valid {
+.landing .signUp .valid {
   color: rgb(117, 255, 117);
 }
 
-.signUp .invalid {
+.landing .signUp .invalid {
   color: red;
 }
 
-.signUp h1 {
+.landing .signUp h1 {
   font-size: 25px;
   letter-spacing: 0px;
   align-self: left;
   margin-left: 5px;
   margin-top: 3px;
 }
-.signUp input, label, button {
+
+.landing .signUp input, label, button {
   width: 80%;
   display: block;
   align-self: center;
-  
 }
 
-.signUp label {
+.landing .signUp label {
   margin-left: 80px;
   width: 100%;
   margin-bottom: 1px;
@@ -157,7 +147,7 @@ body {
   color: black;
 }
 
-.signUp input {
+.landing .signUp input {
   margin-bottom: 3px;
   height: 25px;
   background-color: white;
@@ -165,11 +155,11 @@ body {
   padding: 15px 12px;
 }
 
-.signUp input:focus::placeholder{
+.landing .signUp input:focus::placeholder{
   color: transparent;
 }
 
-.signUp .genres {
+.landing .signUp .genres {
   margin-top: 4px;
   width: 80%;
   border-radius: 8px;
@@ -177,18 +167,18 @@ body {
   height: 25px;
 }
 
-.signUp .error {
+.landing .signUp .error {
   display: flex;
   justify-content: center;
   margin-top: 25px;
   color: red;
 }
 
-.signUp .genres img {
+.landing .signUp .genres img {
   margin-right: 10px;
 }
 
-.signUp button {
+.landing .signUp button {
   margin-top: 20px;
   width: 40%;
   height: 30px;
@@ -196,12 +186,12 @@ body {
   font-weight: bold;
 }
 
-.signUp button:hover {
+.landing .signUp button:hover {
   
   transform: scale(1.1);
 }
 
- .success {
+.landing .success {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -215,34 +205,34 @@ body {
 
 }
 
-.success a {
+.landing .success a {
   text-decoration: underline;
   margin-left: 65px;
 }
 
-.login {
+.landing .login {
   margin-top: 100px;
   background-color: rgba(60, 60, 60, 0.2);
 }
-.login h1 {
+.landing .login h1 {
   font-size: 25px;
   letter-spacing: 0px;
   align-self: left;
 }
 
-.login input, label, button {
+.landing .login input, label, button {
   width: 80%;
   display: block;
   align-self: center;
 }
 
-.login label {
+.landing .login label {
   margin-bottom: 3px;
   font-weight: bolder;
   font-size: 18px;
 }
 
-.login input {
+.landing .login input {
   margin-bottom: 10px;
   height: 25px;
   background-color: white;
@@ -250,19 +240,25 @@ body {
   padding: 15px 12px;
 }
 
-.login button {
+.landing .login button {
   margin-top: 25px;
   width: 25%;
   height: 30px;
   border-radius: 4px;
 }
 
-.login button:hover {
+.landing .login button:hover {
   transform: scale(1.1);
 }
 
+.landing .login .errMsg {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  color: red;
+}
 
-.split-right {
+.landing .split-right {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -273,7 +269,7 @@ body {
   border-bottom-width: 6px;
 }
 
-.split-right img {
+.landing .split-right img {
   display: block;
   width: 100%;
   height: 34%;
@@ -283,14 +279,14 @@ body {
   border-left-width: 5px;
 }
 
-.split-right .text {
+.landing .split-right .text {
   position: absolute;
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-.split-right span {
+.landing .split-right span {
   font-size: 50px;
   margin-top: 140px;
   margin-left: 11px;
@@ -302,33 +298,11 @@ body {
   
 }
 
-.split-right span:hover {
+.landing .split-right span:hover {
   transform: scale(1.05)
 }
 
 
-
-/* Navbar component */
-
-.logo {
-  display: flex;
-  justify-content: center;
-  font-family: 'Bebas Neue';
-  letter-spacing: 10px;
-  padding: 10px;
-  color: var(--secondary);
-}
-
-.navbar {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
-  justify-content: center;
-}
-
-.navbar a {
-  color: var(--tertiary);
-}
 
 
 /* MEDIA QUERIES */
@@ -339,53 +313,55 @@ body {
     flex-direction: column;
   }
 
-  .split-left {
+  .landing .split-left {
     width: 100%;
     height: 90vh;
   }
 
-  .split-left h1 {
+  .landing .split-left h1 {
     align-self: left;
     font-size: 28px;
     margin-left: 6px;
     margin-bottom: 20px;
   }
-  .split-left .signUp {
+  .landing .split-left .signUp {
     width: 300px;
   
   }
-  .signUp label {
+
+  .landing .signUp label {
     margin-right: 21px;
     font-size: 15px;
   }
-  .signUp input {
+
+  .landing .signUp input {
     width: 80%;
     padding: 0px 8px;
   }
 
-  .signUp .genres {
+  .landing .signUp .genres {
     width: 80%;
   }
 
-  .signUp button:focus {
+  .landing .signUp button:focus {
     background-color: red;
     margin-left: 10px;
   }
 
- .success a {
+  .landing .success a {
     margin-left: 70px;
   }
-  .login {
+  .landing .login {
     margin-top: 40px;
     width: 300px;
   }
 
-  .split-right {
+  .landing .split-right {
     height: 101vh;
     width: 100%;
   }
 
-  .split-right span {
+  .landing .split-right span {
     margin-top: 170px;
   }
   

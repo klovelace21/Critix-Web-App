@@ -1,7 +1,9 @@
 import { createContext, useState} from 'react'
-import PropTypes from 'prop-types'
+
+
 const AuthContext = createContext({})
 
+// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({})
 
@@ -13,8 +15,4 @@ export const AuthProvider = ({ children }) => {
 }
 
 export default AuthContext
-
-AuthProvider.propTypes = {
-  children: PropTypes.children
-}
 
