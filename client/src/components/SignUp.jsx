@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import createUser from '../services/users'
+import { createUser } from '../services/users'
 import { useEffect, useState, useRef } from 'react'
 import { faCheck, faTimes, faInfoCircle} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -91,8 +91,9 @@ const SignUp = ({ toggleAccount }) => {
 
   const [selectedOption, selectSelectedOption] = useState('')
 
-  const addUser = async (event) => {
-    event.preventDefault()
+  const addUser = async (e) => {
+    e.preventDefault()
+    
     try{
     await createUser({ 
       username: newUsername, 

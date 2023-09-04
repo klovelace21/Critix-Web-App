@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import PropTypes from 'prop-types'
 import { useRef } from "react"
 import AuthContext from "../context/AuthProvider"
+import { loginUser } from '../services/users'
 
 const Login = ({ toggleAccount }) => {
   const { setAuth } = useContext(AuthContext)
@@ -23,6 +24,21 @@ const Login = ({ toggleAccount }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    try {
+       await loginUser({
+        username: username,
+        password: password,
+      })
+    } catch (err) {
+      
+      if (!err.response) {
+        console.log('No response') 
+      } else if (err.response?.status === 401) {
+        console.log('invalid username or password')
+      }
+    }
+
+    
   }
 
   return (
