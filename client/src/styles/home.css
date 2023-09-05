@@ -1,4 +1,58 @@
 .home {
+  display: flex;
+  flex-direction: column;
   background-image: linear-gradient(#BFDBF7, #0D253F);
-  height: 100vh;
+}
+
+.home h2 {
+  margin-top: 75px;
+  margin-left: 85px
+}
+
+.home .scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 23%;
+  overflow-x: auto;
+  inline-size: min(100% - 4rem, 75rem);
+  margin-inline: auto;
+  gap: 7rem;
+  height: 35%;
+  background-color: #506A84;
+  padding: 20px 20px;
+  border-radius: 10px;
+  overscroll-behavior-inline: contain;
+  border-style: solid;
+  border-color: #3A536D;
+}
+
+
+
+.home .scroller .movie {
+  display: grid;
+  grid-template-rows: min-content;
+  background-color: #66809B;
+  padding: 10px 30px;
+  width: 350px;
+  border-radius: 8px;
+  gap: .5rem;
+  font-size: 18px;
+  color: black
+}
+
+.home .scroller .movie img {
+  margin-top: 10px;
+  object-fit: cover; 
+  inline-size: 100%;
+}
+
+@media screen and (max-width: 700px) {
+  .home h2 {
+    margin-left: 34px;
+    font-size: 22px;
+  }
+  .home .scroller .movie {
+    width: 200px;
+    font-size: 15px;
+  }
 }

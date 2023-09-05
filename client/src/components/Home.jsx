@@ -1,10 +1,24 @@
 import '../styles/home.css'
+import Scrollbar from './Scollbar'
+import { useState, useEffect } from 'react'
+import getTrending from '../services/movies'
 
 const Home = () => {
+  const [trendingMovies, setTrendingMovies] = useState([])
+
+  useEffect(() => {
+    const setTrending = async () => {
+      const movies = await getTrending()
+      setTrendingMovies(movies)
+    }
+    setTrending()
+  }, [])
   return (
     <div className='home'>
-      <h2>Home</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse optio vero, porro dicta sed blanditiis totam fugit velit aspernatur repudiandae praesentium mollitia, cum dolor sunt quidem vel tempora ullam sapiente.</p>
+      <h2>Trending Today</h2>
+      <Scrollbar media={trendingMovies} />
+      <h2>Recommended For You</h2>
+      <Scrollbar media={trendingMovies} />
     </div>
   )
 }
