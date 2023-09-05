@@ -12,11 +12,33 @@ const getTrendingMovies = asyncHandler(async (req, res) => {
     id, name, overview, vote_average, backdrop path / poster path
     maybe more not sure right now
     */
-    const call = base_url + `trending/movie/day` + tail_url
 
-    const result = await axios.get(call)
+    // parses movies from api call and pushes them onto return array
+   const parseMovies = (page, arr) => {
+    page.data.results.forEach(movie => {
+        const { title, id, backdrop_path } = movie
+        arr.push({ title, id, backdrop_path})
+    })
+   }
+
+   
+   full_url = base_url + 'trending/movie/day' + tail_url
+
+    const page1Call = full_url
+    const page2Call = full_url + '&page=2'
+
+    const page1 = await axios.get(page1Call)
+    const page2 = await axios.get(page2Call)
     
-    res.json(result.data)
+    
+    movieArr = []
+    
+    parseMovies(page1, movieArr)
+    parseMovies(page2, movieArr)
+    
+   // console.log(movieArr)
+
+    res.json(movieArr)
 })
 
 // @ desc get recent trending shows in past day
