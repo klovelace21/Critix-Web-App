@@ -12,7 +12,13 @@ const getTrendingMovies = asyncHandler(async (req, res) => {
     id, name, overview, vote_average, backdrop path / poster path
     maybe more not sure right now
     */
-
+   const { period } = req.body
+   if (period === 'week') {
+     params = 'trending/movie/week'
+   } else {
+     params = 'trending/movie/day'
+   }
+   console.log(params)
     // parses movies from api call and pushes them onto return array
    const parseMovies = (page, arr) => {
     page.data.results.forEach(movie => {
@@ -22,7 +28,7 @@ const getTrendingMovies = asyncHandler(async (req, res) => {
    }
 
    
-   full_url = base_url + 'trending/movie/day' + tail_url
+   full_url = base_url + params + tail_url
 
     const page1Call = full_url
     const page2Call = full_url + '&page=2'
