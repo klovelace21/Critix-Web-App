@@ -4,21 +4,26 @@ import { useState, useEffect } from 'react'
 import getTrending from '../services/movies'
 
 const Home = () => {
-  const [trendingMovies, setTrendingMovies] = useState([])
+  const [trendingToday, setTrendingToday] = useState([])
+  const [trendingWeek, setTrendingThisWeek] = useState([])
 
   useEffect(() => {
     const setTrending = async () => {
-      const movies = await getTrending()
-      setTrendingMovies(movies)
+      const moviesDay = await getTrending({ period: "day" })
+      const moviesWeek = await getTrending({ period: "week" })
+
+      setTrendingToday(moviesDay)
+      setTrendingThisWeek(moviesWeek)
     }
+    console.log('fired')
     setTrending()
   }, [])
   return (
     <div className='home'>
       <h2>Trending Today</h2>
-      <Scrollbar media={trendingMovies} />
-      <h2>Recommended For You</h2>
-      <Scrollbar media={trendingMovies} />
+      <Scrollbar media={trendingToday} />
+      <h2>Trending This Week</h2>
+      <Scrollbar media={trendingWeek} />
     </div>
   )
 }
