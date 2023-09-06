@@ -15,7 +15,6 @@ const Home = () => {
       setTrendingToday(moviesDay)
       setTrendingThisWeek(moviesWeek)
     }
-    console.log('fired')
     setTrending()
   }, [])
   return (
