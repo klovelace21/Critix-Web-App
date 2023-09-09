@@ -38,10 +38,10 @@ const getUser = asyncHandler(async (req, res) => {
 // @ route POST /users
 // @ access Private(?)
 const createUser = asyncHandler(async (req, res) => {
-    const { username, password, favoriteGenre } = req.body
+    const { username, password } = req.body
 
     // Confirm data
-    if (!username || !password || !favoriteGenre) {
+    if (!username || !password) {
         return res.status(400).json({ message: 'All fields are required'})
     }
     
@@ -56,7 +56,7 @@ const createUser = asyncHandler(async (req, res) => {
     const hashedPwd = await bcrypt.hash(password, 10)
     
     // Create and Store new User
-    const userObject = { username, "password": hashedPwd, favoriteGenre}
+    const userObject = { username, "password": hashedPwd}
 
     const user = await User.create(userObject)
     
@@ -73,10 +73,10 @@ const createUser = asyncHandler(async (req, res) => {
 // @ access Private(?)
 const updateUser = asyncHandler(async (req, res) => {
     const id = req.params.id
-    const { username, password, favoriteGenre } = req.body
+    const { username, password } = req.body
 
     // Confirm data
-    if (!username || !favoriteGenre) {
+    if (!username) {
     return res.status(400).json({ message: 'Required fields missing' })
     }
 
@@ -96,7 +96,6 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 
     user.username = username
-    user.favoriteGenre = favoriteGenre
 
     // If password was passed, hash and update
     if (password) {

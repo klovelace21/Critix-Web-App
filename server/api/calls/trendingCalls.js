@@ -1,6 +1,7 @@
 const axios = require('axios')
 const asyncHandler = require('express-async-handler')
 
+
 const base_url = 'https://api.themoviedb.org/3/'
 const tail_url = `?api_key=${process.env.API_KEY}`
 
@@ -12,18 +13,18 @@ const getTrendingMovies = asyncHandler(async (req, res) => {
     id, name, overview, vote_average, backdrop path / poster path
     maybe more not sure right now
     */
-   const { period } = req.body
-   if (period === 'week') {
+
+    const period = req.query.param.period
+    if (period == 'week') {
      params = 'trending/movie/week'
-   } else {
+    } else {
      params = 'trending/movie/day'
-   }
-   console.log(params)
+    }
     // parses movies from api call and pushes them onto return array
-   const parseMovies = (page, arr) => {
-    page.data.results.forEach(movie => {
-        const { title, id, backdrop_path } = movie
-        arr.push({ title, id, backdrop_path})
+    const parseMovies = (page, arr) => {
+        page.data.results.forEach(movie => {
+        const { title, id, backdrop_path, overview } = movie
+        arr.push({ title, id, backdrop_path, overview })
     })
    }
 

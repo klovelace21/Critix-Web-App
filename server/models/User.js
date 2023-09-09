@@ -9,10 +9,6 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String
     },
-
-    favoriteGenre: {
-        type: String
-    },
     
     reviews: [
         {
