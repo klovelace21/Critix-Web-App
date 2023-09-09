@@ -29,7 +29,7 @@
 }
 
 .landing .split-left h1{
-  width: 25%;
+  width: 30%;
   margin-left: 20px;
   margin-top: 10px;
   padding-bottom: 20px;
@@ -159,13 +159,7 @@
   color: transparent;
 }
 
-.landing .signUp .genres {
-  margin-top: 4px;
-  width: 80%;
-  border-radius: 8px;
-  align-self: center;
-  height: 25px;
-}
+
 
 .landing .signUp .error {
   display: flex;
@@ -174,9 +168,7 @@
   color: red;
 }
 
-.landing .signUp .genres img {
-  margin-right: 10px;
-}
+
 
 .landing .signUp button {
   margin-top: 20px;
@@ -198,8 +190,8 @@
   width: 325px;
   height: 25%;
   background-color: rgba(60, 60, 60, 0.2);
-  margin: 120px auto;
-  padding: 40px 50px;
+  margin: 130px auto;
+  padding: 45px 50px;
   border-style: solid;
   border-radius: 8px;
 
@@ -320,9 +312,10 @@
 
   .landing .split-left h1 {
     align-self: left;
-    font-size: 28px;
+    font-size: 25px;
     margin-left: 6px;
     margin-bottom: 20px;
+
   }
   .landing .split-left .signUp {
     width: 300px;
@@ -339,12 +332,7 @@
     padding: 0px 8px;
   }
 
-  .landing .signUp .genres {
-    width: 80%;
-  }
-
   .landing .signUp button:focus {
-    background-color: red;
     margin-left: 10px;
   }
 
