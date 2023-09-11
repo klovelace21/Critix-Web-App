@@ -32,9 +32,9 @@ const Login = ({ toggleAccount }) => {
         })
       
       const { accessToken } = response
-
+  
       setAuth({ username, accessToken })
-
+    
       setUsername('')
       setPassword('')
 

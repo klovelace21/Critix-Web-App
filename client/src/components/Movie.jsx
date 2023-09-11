@@ -2,8 +2,12 @@ import PropTypes from 'prop-types'
 import ReviewForm from './ReviewForm'
 const baseImgUrl = 'https://image.tmdb.org/t/p/w300/'
 import { useState } from 'react'
+
+
 const Movie = ({ imageSrc, title, overview }) => {
   const [show, setShow] = useState(false)
+
+
   const handleClick = () => {
     setShow(!show)
   }
