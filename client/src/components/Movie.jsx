@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-import ReviewForm from './ReviewForm'
+import MovieReviewForm from './MovieReviewForm'
 const baseImgUrl = 'https://image.tmdb.org/t/p/w300/'
 import { useState } from 'react'
 
 
-const Movie = ({ imageSrc, title, overview }) => {
+const Movie = ({ imageSrc, title, overview, id }) => {
   const [show, setShow] = useState(false)
 
 
@@ -18,10 +18,12 @@ const Movie = ({ imageSrc, title, overview }) => {
         <h3>{title}</h3>
       </div>
       {show ?
-       <ReviewForm 
+       <MovieReviewForm 
       title={title}
       imageSrc={imageSrc}
-      overview={overview}/> : ''}
+      overview={overview}
+      id={id}
+      /> : ''}
       
     </>
   )
@@ -32,5 +34,6 @@ export default Movie
 Movie.propTypes = {
   imageSrc: PropTypes.string,
   title: PropTypes.string,
-  overview: PropTypes.string
+  overview: PropTypes.string,
+  id: PropTypes.number
 }

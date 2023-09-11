@@ -4,7 +4,9 @@ const baseImgUrl = 'https://image.tmdb.org/t/p/w300/'
 import useAuth from "../hooks/useAuth"
 import { useState } from "react"
 import { useEffect } from "react"
-const ReviewForm = ({title, imageSrc, overview}) => {
+import createReview from "../services/reviews"
+
+const ReviewForm = ({title, imageSrc, overview, id}) => {
   const RATING_REGEX = /^(10|[0-9])$/
 
   const [rating, setRating] = useState('')
@@ -20,7 +22,17 @@ const ReviewForm = ({title, imageSrc, overview}) => {
 
   const submitReview = async (e) => {
     e.preventDefault()
-    console.log(auth)
+    const content = {
+      title: title,
+      id: id,
+      rating: rating,
+      review: review
+    }
+    await createReview(
+      auth,
+      content
+    )
+  
   }
   return (
     <div className="reviewContainer">

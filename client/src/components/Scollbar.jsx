@@ -9,7 +9,7 @@ const Scrollbar = ({ media }) => {
       {
       media.map(media => (
         <Movie key={media.id} imageSrc={media.backdrop_path} title={media.title}
-          overview={media.overview} />
+          overview={media.overview} id={media.id}/>
       ))}
     </div>
     </>
