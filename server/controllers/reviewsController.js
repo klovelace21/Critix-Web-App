@@ -38,37 +38,34 @@ const getReview = asyncHandler(async (req, res) => {
 // @ route POST /reviews
 // @ access Private(?)
 const createReview = asyncHandler(async (req, res) => {
+    const { tmdbID, reviewOf, content, rating, reviewType } = req.body
     
-    const  { createdBy, reviewType, reviewOf, tmdbID, content} = req.body
-
-    // Confirm data
-    if (!createdBy || !reviewType || !reviewOf || !tmdbID || !content) {
-        return res.status(400).json({ message: 'All fields required' })
+    // Verifying input
+    if (!tmdbID || !reviewOf || !content || !rating || !reviewType) {
+        return res.status(401).json({ error: "All fields required"})
     }
 
-    // Confirm createdBy user exists
-    const user = await User.findById(createdBy)
+    // Checking for user
+    const createdBy = req.user
 
-    if (!user) {
-        return res.status(409).json({ message: 'Assigned User not found' })
+    if (!createdBy) {
+        return res.status(401).json({ message: "Authentication failed" })
     }
 
-    // Creating and storing review
-    const reviewObject = {createdBy, reviewType, reviewOf, tmdbID, content}
-
+    // Creating review
+    const reviewObject = { createdBy, reviewType, reviewOf, tmdbID, rating, content}
+    
     const review = await Review.create(reviewObject)
 
-    // Appending created Review to creator
-    user.reviews = user.reviews.concat(review._id)
-    await user.save()
-
-    if (review) {
-        res.status(201).json({
-            message: `New review of ${review.reviewOf} created by ${user.username}`
-        })
-    } else {
-        res.status(400).json({ message: 'Invalid review data received' })
+    if (!review) {
+        return res.status(401).json({ message: "Review creation failed"})
     }
+
+    createdBy.reviews = createdBy.reviews.concat(review._id)
+
+    await createdBy.save()
+
+    return res.status(201).json({ message: `Review from ${createdBy.username} created`})
 
 })
 

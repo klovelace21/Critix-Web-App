@@ -22,6 +22,10 @@ const reviewSchema = new mongoose.Schema({
         type: Number
     },
 
+    rating: {
+        type: Number
+    },
+
     content: {
         type: String
     },

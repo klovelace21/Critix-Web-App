@@ -7,10 +7,11 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const userRoute = require('./routes/userRoutes')
-const reviewRoute = require('./routes/reviewRoutes')
 const apiRoute = require('./routes/apiRoutes')
 const logger = require('./utils/middleware/logger')
 const errorHandler = require('./utils/middleware/errorHandler')
+const tokenExtractor = require('./utils/middleware/tokenExtractor')
+
 
 console.log(process.env.NODE_ENV)
 
@@ -24,10 +25,9 @@ app.use(logger)
 
 app.use(cookieParser())
 
+app.use(tokenExtractor)
+
 app.use('/users', userRoute)
-
-app.use('/reviews', reviewRoute)
-
 app.use('/api', apiRoute)
 
 app.get('*', (req, res) => {
