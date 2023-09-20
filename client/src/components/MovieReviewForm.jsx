@@ -6,7 +6,7 @@ import { useState } from "react"
 import { useEffect } from "react"
 import createReview from "../services/reviews"
 
-const ReviewForm = ({title, imageSrc, overview, id}) => {
+const MovieReviewForm = ({title, imageSrc, overview, id, handleExit}) => {
   const RATING_REGEX = /^(10|[0-9])$/
 
   const [rating, setRating] = useState('')
@@ -26,8 +26,10 @@ const ReviewForm = ({title, imageSrc, overview, id}) => {
       title: title,
       id: id,
       rating: rating,
-      review: review
+      review: review,
+      type: "Movie"
     }
+    console.log(content)
     await createReview(
       auth,
       content
@@ -54,12 +56,12 @@ const ReviewForm = ({title, imageSrc, overview, id}) => {
         <textarea id="review" 
         onChange={e => setReview(e.target.value)}>
         </textarea>
-        
+        <button id="exit" onClick={handleExit}>X</button>
         <button type="submit">Save Review</button>
       </form>
     </div>
   )
 }
 
-export default ReviewForm
+export default MovieReviewForm
 

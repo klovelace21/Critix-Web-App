@@ -23,6 +23,7 @@ const Movie = ({ imageSrc, title, overview, id }) => {
       imageSrc={imageSrc}
       overview={overview}
       id={id}
+      handleExit={handleClick}
       /> : ''}
       
     </>
