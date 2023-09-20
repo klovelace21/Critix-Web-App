@@ -8,15 +8,16 @@ router.route('/')
     .get(usersController.getAllUsers)
     .post(usersController.createUser)
 
-router.route('/:id')
-    .get(usersController.getUser)
-    .patch(usersController.updateUser)
-    .delete(usersController.deleteUser)
-
 router.route('/login')
     .post(usersController.loginUser)
 
 router.route('/reviews')
     .post(userExtractor, reviewController.createReview)
+    .get(userExtractor, reviewController.getAllReviews)
+
+router.route('/:id')
+    .get(usersController.getUser)
+    .patch(usersController.updateUser)
+    .delete(usersController.deleteUser)
 
 module.exports = router

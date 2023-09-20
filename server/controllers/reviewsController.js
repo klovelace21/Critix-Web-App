@@ -3,20 +3,20 @@ const Review = require('../models/Review')
 const User = require('../models/User')
 
 
-// @ desc Get all reviews
+// @ desc Get all reviews associated with user
 // @ route GET /reviews
 // @ access Private
 const getAllReviews = asyncHandler(async (req, res) => {
+    
+    const reviews =  await Review.find({ createdBy: req.user._id }).lean()
 
-    //obtaining reviews
-    const reviews = await Review.find().lean()
-
-    // if reviews is null or empty
-    if (!reviews?.length) {
-        return res.status(400).json({ message: 'No reviews found' })
-    }
-
-    res.json(reviews)
+    const changedReviews = []
+    reviews.forEach(review => {
+        const { reviewOf, rating, content } = review
+        changedReviews.push({ title: reviewOf, rating, content})
+    })
+ 
+    res.json(changedReviews)
 })
 
 // @ desc Get a review
