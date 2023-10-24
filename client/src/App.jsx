@@ -4,6 +4,8 @@ import Navbar from './components/Navbar'
 import Landing from './components/Landing'
 import RequiresAuth from './components/RequiresAuth'
 import Home from './components/Home'
+import UserReviews from './components/userReviews'
+
 function App() {
 
   return (
@@ -13,6 +15,7 @@ function App() {
         <Route path="/" element={<Landing/>}/>
         <Route element={<RequiresAuth />}>
           <Route path="/home" element={<Home/>}/>
+          <Route path="/reviews" element={<UserReviews/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

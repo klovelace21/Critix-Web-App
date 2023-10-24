@@ -1,7 +1,8 @@
 import '../styles/home.css'
 import Scrollbar from './Scollbar'
 import { useState, useEffect } from 'react'
-import getTrending from '../services/movies'
+import  getTrending  from '../services/movies'
+
 const Home = () => {
   const [trendingToday, setTrendingToday] = useState([])
   const [trendingWeek, setTrendingThisWeek] = useState([])

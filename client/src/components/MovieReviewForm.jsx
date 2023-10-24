@@ -4,7 +4,7 @@ const baseImgUrl = 'https://image.tmdb.org/t/p/w300/'
 import useAuth from "../hooks/useAuth"
 import { useState } from "react"
 import { useEffect } from "react"
-import createReview from "../services/reviews"
+import { createReview } from "../services/reviews"
 
 const MovieReviewForm = ({title, imageSrc, overview, id, handleExit}) => {
   const RATING_REGEX = /^(10|[0-9])$/
@@ -29,12 +29,12 @@ const MovieReviewForm = ({title, imageSrc, overview, id, handleExit}) => {
       review: review,
       type: "Movie"
     }
-    console.log(content)
+  
     await createReview(
       auth,
       content
     )
-  
+      handleExit()
   }
   return (
     <div className="reviewContainer">
@@ -57,7 +57,7 @@ const MovieReviewForm = ({title, imageSrc, overview, id, handleExit}) => {
         onChange={e => setReview(e.target.value)}>
         </textarea>
         <button id="exit" onClick={handleExit}>X</button>
-        <button type="submit">Save Review</button>
+        <button type="submit" >Save Review</button>
       </form>
     </div>
   )
