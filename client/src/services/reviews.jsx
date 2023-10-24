@@ -28,7 +28,7 @@ const createReview = async (user, content) => {
 const getAllReviews = async (user) => {
   
   const token = setToken(user.accessToken)
-  console.log(token)
+  
   const config = {
     headers: { Authorization: token }
   }

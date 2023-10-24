@@ -4,3 +4,38 @@
   background-image: linear-gradient(#BFDBF7, #0D253F);
   height: 100vh;
 }
+
+.userReviews h2 {
+  display: flex;
+  padding-top: 5%;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 40px;
+}
+
+.userReviews .reviewContainer {
+  height: 100%;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #506A84;
+
+  border-color: #3A536D;
+  border-style: solid;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+
+.userReviews .review {
+  padding: 5px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 25px;
+  border-bottom-style: solid;
+  border-color: #3A536D;
+}
+
+.userReviews .review:hover {
+  transform: scale(1.10);
+}

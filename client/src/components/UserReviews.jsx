@@ -3,6 +3,8 @@ import '../styles/userReviews.css'
 import { useEffect, useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import { getAllReviews}  from '../services/reviews.jsx'
+import ReviewContainer from './ReviewContainer'
+
 
 const UserReviews = () => {
   
@@ -16,10 +18,14 @@ const UserReviews = () => {
       setAllReviews(retrievedReviews)
     }
      retrieveAllReviews()
+
   }, [])
 
   return (
-    <div className="userReviews">userReviews</div>
+    <div className="userReviews">
+      <h2>Reviews</h2>
+      <ReviewContainer reviews={allReviews}/>
+    </div>
   )
 }
 

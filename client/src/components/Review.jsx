@@ -1,9 +1,14 @@
 
+import PropTypes from "prop-types"
 
-const Review = () => {
+const Review = ({ title }) => { 
   return (
-    <div>Review</div>
+    <div className="review">{title}</div>
   )
 }
 
 export default Review
+
+Review.propTypes = {
+  title: PropTypes.string
+}
