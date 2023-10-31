@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import '../styles/userReviews.css'
+import '../../styles/userReviews.css'
 import { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import { getAllReviews}  from '../../services/reviews.jsx'
-import ReviewContainer from '../ReviewContainer'
+import ReviewContainer from './ReviewContainer'
 
 
 const UserReviews = () => {
@@ -23,7 +23,7 @@ const UserReviews = () => {
 
   return (
     <div className="userReviews">
-      <h2>Reviews</h2>
+      <h2>My Reviews</h2>
       <ReviewContainer reviews={allReviews}/>
     </div>
   )

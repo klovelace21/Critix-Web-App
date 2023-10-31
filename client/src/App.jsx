@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Landing from './components/Landing'
 import RequiresAuth from './components/RequiresAuth'
 import Home from './components/Home'
-import UserReviews from './components/userReviews'
+import UserReviews from './components/UserReviews/UserReviews'
 
 function App() {
 

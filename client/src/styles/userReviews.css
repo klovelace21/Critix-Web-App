@@ -29,13 +29,41 @@
 
 .userReviews .review {
   padding: 5px;
-  text-align: center;
-  font-weight: 400;
-  font-size: 25px;
   border-bottom-style: solid;
   border-color: #3A536D;
+  overflow: hidden;
+  height: 50px;
+  text-align: end;
 }
 
-.userReviews .review:hover {
-  transform: scale(1.10);
+.userReviews .title {
+  float: left;
+  padding-left: 15px;
 }
+
+.userReviews .rating {
+  padding-right: 15px;
+}
+
+.userReviews p {
+  padding-top: 10px;
+  display: flex;
+  padding-left: 10px;
+}
+.userReviews .review:hover {
+  height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

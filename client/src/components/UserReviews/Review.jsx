@@ -1,16 +1,20 @@
 
 import PropTypes from "prop-types"
-import { useState } from "react"
-const Review = ({ title }) => { 
-  const [show, setShow] = useState(false)
 
-  const handleClick = () => {
-    setShow(!show)
+const Review = ({ title, rating, content}) => { 
 
-  }
+
   return (
   <>
-    <div className="review" onClick={handleClick}>{title}</div>
+  <div className="review"> 
+  <h1><span className="title">{title}</span><span className="rating">{rating}/10</span></h1>
+  <p>{content}</p>
+    </div>
+   
+    
+
+
+    
     </>
   )
 }
@@ -18,5 +22,7 @@ const Review = ({ title }) => {
 export default Review
 
 Review.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  rating: PropTypes.string,
+  content: PropTypes.string
 }
